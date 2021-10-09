@@ -1,0 +1,149 @@
+body {
+    margin: 0;
+    background-color: black;
+}
+
+#base {
+    width: 960px;
+    background-color: black;
+    margin: auto;
+    padding: 5px;
+    border-style: solid;
+    border-width: 10px;
+    border-color: #69072a;
+    border-radius: 25px;
+    overflow: auto;
+    text-align: center;
+}
+
+#base2 {
+    position: relative;
+    border-style: solid;
+    border-width: 5px;
+    border-color: cyan;
+    border-radius: 10px;
+    padding: 10px;
+    background-image: url("stars.png");
+    background-size: 50%;
+}
+
+h1 { 
+    color: gold;
+    text-align: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+#spindiv {
+    position: relative;
+}
+
+#spin {
+    width: 142px;
+    position: absolute;
+    top: 211px;
+    left: 388px;
+    display: block;
+}
+
+#settings {
+    background-color: black;
+    height: 400x;
+    width: 300px;
+    padding: 20px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #69072a;
+    overflow: auto;
+    position: absolute;
+    top: 150px;
+    left: 300px;
+    border-radius: 25px;
+    display: none;
+}
+
+#checkbox {
+    width: 20px;
+    height: 20px;
+    position: relative;
+    top: 4px;
+    left: 5px;
+}
+
+h2 {
+    color: gold;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    margin: 0;
+    padding-bottom: 15px;
+}
+
+#meedio {
+    width: 400px;
+    height: 400px;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+#input {
+    width: 300px;
+}
+
+#button3 {
+    background-color: gold;
+    border: none;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: black;
+    border-radius: 4px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+#button1, #button2 {
+    background-color: gold;
+    border: none;
+    color: black;
+    border-radius: 4px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+#button1:hover, #button2:hover, #button3:hover {
+    background-color: #69072a;
+    color: white;
+    cursor: pointer;
+}
+
+#gear {
+    position: absolute;
+    top: 525px;
+    right: 15px;
+    width: 60px;
+    background-color: gold;
+    border-radius: 4px;
+}
+
+#gear:hover {
+    background-color: #69072a;
+    cursor: pointer;
+}
+
+span {
+    color: gold;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+#texts {
+    height: 25px;
+    width:700px;
+    margin:auto;
+    font-size: 20px;
+    padding-bottom: 20px;
+}

@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <link rel="icon" href="meediologo.png"/>
+        <link href="styles.css" type="text/css" rel="stylesheet" media="screen"/>
+        <meta charset="utf-8"/>
+        <title>Meedio</title>
+	</head>
+	<body>
+    <div id="base">
+        <div id="base2">
+            <h1>Meedio</h1>
+            <div id="spindiv"><img id="spin" src="spin2.gif"/></div>
+            <div id="settings">
+                <h2>Info</h2>
+                <span>Meedio on viisas tietäjä mailta kaikkeuden rajojen, jolta voit kysyä mitä tahansa. Muistathan lisätä loppuun kysymysmerkin!</span>
+                </br></br>
+                <span>Animaatio: </span><input type="checkbox" checked="checked" id="checkbox"/>
+                </br></br></br>
+                <button id="button3" onclick="settings();"> OK </button>
+            </div>
+            <img id="meedio" src="meedio.png" alt="meedio itse"/>
+            </br>
+                <div id="texts">
+                    <span>Kysy meediolta: </span>
+                    <input id="input" value="Minne tämä maailma on menossa?" spellcheck="false" autofocus/>
+                    <button onclick="ask();" id="button1">Kysy</button>
+                    <button onclick="empty();" id="button2">Tyhjennä</button>
+                </div>
+                    <span>Meedio &copy; ei ole vastuussa vastauksista inspiroituneena tehdyistä päätöksistä, eikä mistään muustakaan.</span>
+                <img src="settings.png" id="gear" alt="Settings"/>
+        </div>
+    </div>
+    </body>
+    <script>
+        // same question checkers
+        let mika = 0;
+        let miksi = 0;
+        let minka = 0;
+        let minne = 0;
+        let mihin = 0;
+        let miten = 0;
+        let milta = 0;
+        let missa = 0;
+        let milloin = 0;
+        let kuka = 0;
+        let kuinka = 0;
+        let oliko = 0;
+        let onko = 0;
+        let mita = 0;
+        let mista = 0;
+        let monta = 0;
+        //enter to ask
+         input.addEventListener("keyup", function(ask) {
+                if(event.keyCode === 13){
+                    event.preventDefault();
+                    document.getElementById("button1").click();
+                }
+            });
+        let r1 = new Audio("sound/silence.mp3");
+        let prev = -1;
+        let t = 0;
+        //ask
+        function ask (){
+                clearInterval(t);
+                r1.pause();
+                let check = true;
+                let firstCheck = true;
+                // check if the same thing is asked twice
+                if(prev == document.getElementById("input").value){
+                    firstCheck = false;
+                    console.log("sama");
+                    r1 = new Audio("sound/same.mp3");
+                    r1.play();
+                    setTimeout(stopTimer, 2000);
+                }
+                prev = document.getElementById("input").value;
+                    //talking
+                    t = setInterval(calc, 125);
+                        let lock1 = 0;
+                        let lock2 = 0;
+                        let lock3 = 0;
+                        let lock4 = 0;
+                    function calc(){
+                        // swapping photos
+                        let rng3 = Math.floor(Math.random() * 4 + 1);
+                        if(rng3 == 1 && lock1 == 0){
+                        document.getElementById("meedio").src = "meedio.png";
+                        let lock1 = 1;
+                        let lock2 = 0;
+                        let lock3 = 0;
+                        let lock4 = 0;
+                        }
+                        if(rng3 == 2 && lock2 == 0){
+                        document.getElementById("meedio").src = "meedio2.png";
+                        let lock1 = 0;
+                        let lock2 = 1;
+                        let lock3 = 0;
+                        let lock4 = 0;
+                        }
+                        if(rng3 == 3 && lock3 == 0){
+                        document.getElementById("meedio").src = "meedio3.png";
+                        let lock1 = 0;
+                        let lock2 = 0;
+                        let lock3 = 1;
+                        let lock4 = 0;
+                        }
+                        if(rng3 == 4 && lock4 == 0){
+                        document.getElementById("meedio").src = "meedio4.png";
+                        let lock1 = 0;
+                        let lock2 = 0;
+                        let lock3 = 0;
+                        let lock4 = 1;
+                        }
+                    }
+            // checking if the last symbol is a question mark
+            let inp = document.getElementById("input").value;
+                if(inp[inp.length - 1] != "?" && firstCheck == true){
+                console.log("ei kysymys");
+                let kysy = new Audio("sound/kysymys.mp3");
+                kysy.play();
+                setTimeout(stopTimer, 3000);
+                check = false;
+                }
+            // detecting question word
+            if(firstCheck){
+            if(check){
+                if(inp[0] == "m" || inp[0] == "M"){
+                    if(inp[1] == "o" && monta == 0){
+                        //monta
+                        console.log("monta");
+                        r1 = new Audio("sound/monta.mp3");
+                        r1.play();
+                        monta++;
+                        setTimeout(stopTimer, 3000);
+                    }
+                    else if(inp[1] == "i"){
+                        if(inp[2] == "n"){
+                            if(inp[3] == "n" && minne == 0){
+                            //minne
+                            minne++;
+                            console.log("minne");
+                            r1 = new Audio("sound/minne.mp3");
+                            r1.play();
+                            setTimeout(stopTimer, 4000);
+                            }
+                            else if(inp[3] == "k" && minka == 0){
+                            //minkä, minkälainen
+                            minka++;
+                            console.log("minkä");
+                            r1 = new Audio("sound/minka.mp3");
+                            r1.play();
+                            setTimeout(stopTimer, 3000);
+                            }
+                            else{
+                                others();
+                            }
+                        }
+                        else if(inp[2] == "h" && mihin == 0){
+                            //mihin
+                            mihin++;
+                            console.log("mihin");
+                            r1 = new Audio("sound/mihin.mp3");
+                            r1.play();
+                            setTimeout(stopTimer, 5000);
+                        }
+                        else if(inp[2] == "l"){
+                            if(inp[3] == "l" && milloin == 0){
+                                //milloin
+                                milloin++;
+                                console.log("milloin");
+                                r1 = new Audio("sound/milloin.mp3");
+                                r1.play();
+                                setTimeout(stopTimer, 3000);
+                            }
+                            else if(inp[3] == "t" && milta == 0){
+                                //miltä
+                                milta++;
+                                console.log("miltä");
+                                r1 = new Audio("sound/milta.mp3");
+                                r1.play();
+                                setTimeout(stopTimer, 3000);
+                            }
+                            else{
+                                others();
+                            }
+                        }
+                        else if(inp[2] == "s"){
+                            if(inp[3] == "t" && mista == 0){
+                                //mistä
+                                mista++;
+                                console.log("mistä");
+                                r1 = new Audio("sound/mista.mp3");
+                                r1.play();
+                                setTimeout(stopTimer, 3000);
+                            }
+                            else if(inp[3] == "s" && missa == 0){
+                                let rng7 = Math.floor(Math.random() * 2 + 1);
+                                //missä
+                                missa++;
+                                console.log("missä");
+                                if(rng7 == 1){
+                                    r1 = new Audio("sound/missa.mp3");
+                                    r1.play();
+                                    setTimeout(stopTimer, 4000);
+                                }
+                                else if(rng7 == 2){
+                                    r1 = new Audio("sound/missa2.mp3");
+                                    r1.play();
+                                    setTimeout(stopTimer, 5000);
+                                }
+                            }
+                            else{
+                                others();
+                            }
+                        }
+                        else if(inp[2] == "k"){
+                            if(inp[3] == "s" && miksi == 0){
+                                //miksi
+                                miksi++;
+                                console.log("miksi");
+                                r1 = new Audio("sound/miksi.mp3");
+                                r1.play();
+                                setTimeout(stopTimer, 5000);
+                            }
+                            else if(inp[3] == "ä" && mika == 0){
+                                //mikä
+                                mika++;
+                                console.log("mikä");
+                                r1 = new Audio("sound/mika.mp3");
+                                r1.play();
+                                setTimeout(stopTimer, 5000);
+                            }
+                            else{
+                                others();
+                            }
+                        }
+                        else if(inp[2] == "t"){
+                            if(inp[3] == "ä" && mita == 0){
+                                //mitä
+                                mita++;
+                                console.log("mitä");
+                                let r1 = new Audio("sound/mita.mp3");
+                                r1.play();
+                                setTimeout(stopTimer, 2000);
+                            }
+                            else if(inp[3] == "e" && miten == 0){
+                                //miten
+                                miten++;
+                                console.log("miten");
+                                r1 = new Audio("sound/miten.mp3");
+                                r1.play();
+                                setTimeout(stopTimer, 3000);
+                            }
+                            else{
+                                others();
+                            }
+                        }
+                        else {
+                            others();
+                        }
+                    }
+                    else{
+                        others();
+                    }
+                }
+                else if(inp[0] == "k" || inp[0] == "K"){
+                    if(inp[1] == "u"){
+                        if(inp[2] == "k" && kuka == 0){
+                            //kuka
+                            kuka++;
+                            console.log("kuka");
+                            r1 = new Audio("sound/kuka.mp3");
+                            r1.play();
+                            setTimeout(stopTimer, 2000);
+                        }
+                        else if(inp[2] == "i" && kuinka == 0){
+                            //kuinka
+                            kuinka++;
+                            console.log("kuinka");
+                            r1 = new Audio("sound/miten.mp3");
+                            r1.play();
+                            setTimeout(stopTimer, 3000);
+                        }
+                        }
+                        else if(inp[1] == "e"){
+                            //ketä kenen jne
+                            console.log("ketä");
+                            r1 = new Audio("sound/keta.mp3");
+                            r1.play();
+                            setTimeout(stopTimer, 3000);
+                        }
+                        else {
+                            others();
+                        }
+                }
+                else if(inp[0] == "o" || inp[0] == "O"){
+                    if(inp[1] == "n" && onko == 0){
+                        //onko
+                        onko++;
+                        console.log("onko");
+                        r1 = new Audio("sound/onko.mp3");
+                        r1.play();
+                        setTimeout(stopTimer, 5000);
+                    }
+                    else {
+                        //oliko, olisiko, oisiko
+                        console.log("oliko");
+                        r1 = new Audio("sound/oliko.mp3");
+                        r1.play();
+                        setTimeout(stopTimer, 5000);
+                    }
+                }
+                // if no question word detected
+                else {
+                    others();
+                }
+            }
+        }
+        }
+                // rng function needs to be here for global scope
+                function others(){
+                    console.log("random");
+                    let rng2 = Math.floor(Math.random() * 15 + 1);
+                    if(rng2 == 1){
+                        r1 = new Audio("sound/r1.mp3");
+                        r1.play();
+                        setTimeout(stopTimer, 5000);
+                    }
+                    else if(rng2 == 2){
+                        r1 = new Audio("sound/r2.mp3");
+                        r1.play();
+                        setTimeout(stopTimer, 6000);
+                    }
+                    else if(rng2 == 3){
+                        r1 = new Audio("sound/r3.mp3");
+                        r1.play();
+                        setTimeout(stopTimer, 3000);
+                    }
+                    else if(rng2 == 4){
+                        r1 = new Audio("sound/r4.mp3");
+                        r1.play();
+                        setTimeout(stopTimer, 6000);
+                    }
+                    else if(rng2 == 5){
+                        r1 = new Audio("sound/r5.mp3");
+                        r1.play();
+                        setTimeout(stopTimer, 5000);
+                    }
+                    else if(rng2 == 6){
+                        r1 = new Audio("sound/r6.mp3");
+                        r1.play();
+                        setTimeout(stopTimer, 6000);
+                    }
+                    else if(rng2 == 7){
+                        r1 = new Audio("sound/r7.mp3");
+                        r1.play();
+                        setTimeout(stopTimer, 5000);
+                    }
+                    else if(rng2 == 8){
+                        r1 = new Audio("sound/r8.mp3");
+                        r1.play();
+                        setTimeout(stopTimer, 4000);
+                    }
+                    else if(rng2 == 9){
+                        r1 = new Audio("sound/r9.mp3");
+                        r1.play();
+                        setTimeout(stopTimer, 2000);
+                    }
+                    else if(rng2 == 10){
+                        r1 = new Audio("sound/r10.mp3");
+                        r1.play();
+                        setTimeout(stopTimer, 7000);
+                    }
+                    else if(rng2 == 11){
+                        r1 = new Audio("sound/r11.mp3");
+                        r1.play();
+                        setTimeout(stopTimer, 12000);
+                    }
+                    else if(rng2 == 12){
+                        r1 = new Audio("sound/r12.mp3");
+                        r1.play();
+                        setTimeout(stopTimer, 5000);
+                    }
+                    else if(rng2 == 13){
+                        r1 = new Audio("sound/r13.mp3");
+                        r1.play();
+                        setTimeout(stopTimer, 3000);
+                    }
+                    else if(rng2 == 14){
+                        r1 = new Audio("sound/r14.mp3");
+                        r1.play();
+                        setTimeout(stopTimer, 5000);
+                    }
+                    else if(rng2 == 15){
+                        r1 = new Audio("sound/r15.mp3");
+                        r1.play();
+                        setTimeout(stopTimer, 5000);
+                    }
+                }
+        //stop talking
+        function stopTimer(){
+            clearInterval(t);
+            document.getElementById("meedio").src = "meedio.png";
+        }
+        //empty input field
+        function empty(){
+            document.getElementById("input").value = "";
+            document.getElementById("input").focus();
+        }
+        //smile
+        document.getElementById("meedio").addEventListener("mouseover",smile);
+        document.getElementById("spin").addEventListener("mouseover",smile);
+        function smile(){
+            document.getElementById("meedio").src = "meedio2.png";
+        }
+        //tickle
+        document.getElementById("meedio").addEventListener("click",tickle);
+        document.getElementById("spin").addEventListener("click",tickle);
+        function tickle (){
+            let rng = Math.floor(Math.random() * 3 + 1);
+            if(rng == 1){
+            let tickle1 = new Audio("sound/tickle1.mp3");
+            tickle1.play();
+            }
+            if(rng == 2){
+            let tickle2 = new Audio("sound/tickle2.mp3");
+            tickle2.play();
+            }
+            if(rng == 3){
+            let tickle3 = new Audio("sound/tickle3.mp3");
+            tickle3.play();
+            }
+        }
+        //stop smiling
+        document.getElementById("meedio").addEventListener("mouseleave",untickle);
+        document.getElementById("spin").addEventListener("mouseleave",untickle);
+        function untickle (){
+            document.getElementById("meedio").src = "meedio.png";
+        }
+        let animation = document.getElementById("checkbox");
+        // settings popup
+        let popup = true;
+        document.getElementById("gear").addEventListener("click",settings);
+        function settings (){
+            // animation on/off
+            if(animation.checked){
+                document.getElementById("spin").style.display = "block";
+            }
+            else if(animation.checked == false){
+                document.getElementById("spin").style.display = "none";
+            }
+            //popup on/off
+            if(popup){
+                document.getElementById("settings").style.display = "block";
+            popup = false;
+            }
+            else if(popup == false){
+                document.getElementById("settings").style.display = "none";
+            popup = true;
+            }
+        }
+    </script>
+</html>
